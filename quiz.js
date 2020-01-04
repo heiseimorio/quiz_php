@@ -13,7 +13,8 @@ $(function () {
 
     // answer.phpにデータを渡す
     $.post('/_answer.php', {
-      answer: answer
+      answer: answer,
+      token: $('#token').val()
       // データを渡し終えた後の処理
     }).done(function (res) {
       $('.answer').each(function () {

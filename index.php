@@ -2,6 +2,7 @@
 
 require_once(__DIR__ . '/config.php');
 require_once(__DIR__ . '/Quiz.php');
+require_once(__DIR__ . '/Token.php');
 
 // Quizクラスからインスタンスを生成
 $quiz = new MyApp\Quiz();
@@ -38,6 +39,7 @@ if (!$quiz->isFinished()) {
         <?php endforeach; ?>
       </ul>
       <div id="btn" class="disabled"><?php echo $quiz->isLast() ? 'Show Result' : 'Next Question' ?></div>
+      <input type="hidden" id="token" value="<?php echo h($_SESSION['token']); ?>">
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="quiz.js"></script>

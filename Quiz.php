@@ -7,6 +7,7 @@ class Quiz {
   
   public function __construct() {
     $this->_setup();
+    Token::create();
 
     if (!isset($_SESSION['current_num'])) {
       $this->_initSession();
@@ -19,6 +20,7 @@ class Quiz {
   }
 
   public function checkAnswer() {
+    Token::validate('token');
     $correctAnswer = $this->_quizSet[$_SESSION['current_num']]['a'][0];
     if (!isset($_POST['answer'])) {
       throw new \Exception('answer not set!');
