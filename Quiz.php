@@ -9,13 +9,20 @@ class Quiz {
     $this->_setup();
 
     if (!isset($_SESSION['current_num'])) {
-      $_SESSION['current_num'] = 0;
-      $_SESSION['correct_count'] = 0;
+      $this->_initSession();
     }
+  }
+
+  private function _initSession() {
+    $_SESSION['current_num'] = 0;
+    $_SESSION['correct_count'] = 0;
   }
 
   public function checkAnswer() {
     $correctAnswer = $this->_quizSet[$_SESSION['current_num']]['a'][0];
+    if (!isset($_POST['answer'])) {
+      throw new \Exception('answer not set!');
+    }
     if ($correctAnswer === $_POST['answer']) {
       $_SESSION['correct_count']++;
     }
@@ -36,8 +43,7 @@ class Quiz {
   }
 
   public function reset() {
-    $_SESSION['current_num'] = 0;
-    $_SESSION['correct_count'] = 0;
+    $this->_initSession();
   }
 
   public function getCurrentQuiz() {
