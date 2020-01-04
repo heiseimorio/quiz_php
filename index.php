@@ -21,7 +21,13 @@ if (!$quiz->isFinished()) {
 </head>
 <body>
   <?php if ($quiz->isFinished()) : ?>
-    <a href="">Fibished!</a>
+    <div id="container">
+      <div id="result">
+        Your Score ...
+        <div><?php echo h($quiz->getScore()); ?> %</div>
+      </div>
+      <a href=""><div id="btn">Replay?</div></a>
+    </div>
     <?php $quiz->reset(); ?>
   <?php else : ?>
     <div id="container">
@@ -31,7 +37,7 @@ if (!$quiz->isFinished()) {
           <li class="answer"><?php echo h($a); ?></li>
         <?php endforeach; ?>
       </ul>
-      <div id="btn" class="disabled">Next Question</div>
+      <div id="btn" class="disabled"><?php echo $quiz->isLast() ? 'Show Result' : 'Next Question' ?></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="quiz.js"></script>
