@@ -47,3 +47,15 @@ li {
 #btn.disabled {
   opacity: 0.5;
 }
+
+/* 解答を選択した時 */
+.correct {
+  color: limegreen;
+  font-weight: bold;
+}
+.wrong {
+  color: #ddd;
+}
+.selected {
+  font-weight: bold;
+}
