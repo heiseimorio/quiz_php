@@ -13,6 +13,20 @@ class Quiz {
     }
   }
 
+  public function checkAnswer() {
+    $correctAnswer = $this->_quizSet[$_SESSION['current_num']]['a'][0];
+    $_SESSION['current_num']++;
+    return $correctAnswer;
+  }
+
+  public function isFinished() {
+    return count($this->_quizSet) === $_SESSION['current_num'];
+  }
+
+  public function reset() {
+    $_SESSION['current_num'] = 0;
+  }
+
   public function getCurrentQuiz() {
     return $this->_quizSet[$_SESSION['current_num']];
   }

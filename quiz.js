@@ -3,6 +3,11 @@ $(function () {
 
   $('.answer').on('click', function () {
     var $selected = $(this);
+
+    // 正解、不正解が表示された後に、他の選択肢がクリック出来ないように処理を中断させる
+    if ($selected.hasClass('correct') || $selected.hasClass('wrong')) {
+      return;
+    }
     $selected.addClass('selected');
     var answer = $selected.text();
 
@@ -26,6 +31,16 @@ $(function () {
         // 不正解の処理
         $selected.text(answer + ' ... 不正解です');
       }
+
+      // 答え合わせの後に次の問題へいくボタンを押せるようにする
+      $('#btn').removeClass('disabled');
     });
+  });
+
+  // Next Questionを押すとページを再読み込みする
+  $('#btn').on('click', function () {
+    if (!$(this).hasClass('disabled')) {
+      location.reload();
+    }
   });
 });
